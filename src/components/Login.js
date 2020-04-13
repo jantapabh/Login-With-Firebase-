@@ -4,13 +4,40 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import fire from "../config/fire";
-
+import firebase from 'firebase'
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [isSignedIn, setIsSignedIn] = useState(false)
+
+ const uiConfig = {
+
+        signInFlow: "popup",
+        signInOptions: [
+
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.GithubAuthProvider.PROVIDER_ID
+        ],
+
+        callback: {
+
+            signInSuccess: () => false
+        }
+    }
+
+    const componentDidMount = () => {
+
+      
+
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({ isSignedIn: !!user })
+        })
+    }
 
     const login = e => {
 
