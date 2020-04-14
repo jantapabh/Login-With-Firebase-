@@ -6,6 +6,7 @@ import "mdbreact/dist/css/mdb.css";
 import fire from "../config/fire";
 import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import './LoginForm.css'
 
 
 const Login = () => {
@@ -37,7 +38,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="LoginForm">
             <MDBContainer>
                 <MDBRow>
                     <MDBCol md="6">
