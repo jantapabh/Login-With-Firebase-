@@ -1,25 +1,21 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-import fire from "../config/fire";
-import firebase from 'firebase'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import './LoginForm.css'
+import fire from '../config/fire'
 
 
-const Login = () => {
+const LoginPage = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isSignedIn, setIsSignedIn] = useState(false)
 
- 
     const login = e => {
 
         e.preventDefault();
-        fire.auth().signInWithEmailAndPassword(email, password).then((u) =>{
+        fire.auth().signInWithEmailAndPassword(email, password).then((u) => {
             console.log(u)
         }).catch((err) => {
             console.log(err)
@@ -37,17 +33,18 @@ const Login = () => {
         })
     }
 
+
     return (
-        <div>
-            <MDBContainer className="LoginForm">
-                <MDBRow>
-                    <MDBCol md="8">
+        <div >
+            <MDBContainer>
+                <MDBRow className="LoginForm">
+                    <MDBCol md="9">
                         <form>
                             <p className="h5 text-center mb-4">Sign up</p>
                             <div className="grey-text">
-                                <MDBInput label="Your email" icon="envelope" group type="email" validate error="wrong"
-                                    success="right" name="email" onChange={(e)=> setEmail(e.target.value)} />
-                                <MDBInput label="Your password" icon="lock" group type="password" name="password" validate onChange={(e)=> setPassword(e.target.value)} />
+                                <MDBInput label="Your email" group type="email" validate error="wrong"
+                                    success="right" name="email" onChange={(e) => setEmail(e.target.value)} />
+                                <MDBInput label="Your password" group type="password" name="password" validate onChange={(e) => setPassword(e.target.value)} />
                             </div>
                             <div className="text-center">
                                 <MDBBtn color="primary" onClick={login}>LOGIN</MDBBtn>
@@ -61,4 +58,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default LoginPage;
