@@ -1,14 +1,16 @@
 import React from 'react'
 import fire from '../config/fire'
-import firebase from 'firebase'
 
 
-const Home = () => {
 
-const logout = e => {
 
-    fire.auth().signOut();
-}
+const Home = props => {
+
+    const logout = () => {
+
+        fire.auth().signOut();
+    }
+    
     return (
         <div>
             Home Page
