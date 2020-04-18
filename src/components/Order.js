@@ -6,9 +6,7 @@ const Order = props => {
 
     return (
         <div>
-            <Order />
-            <div>
-            </div>
+         Order
         </div>
     )
 }
