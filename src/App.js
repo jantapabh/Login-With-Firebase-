@@ -1,56 +1,68 @@
 import React, { Component } from 'react';
 import './App.css';
-import LoginPage from './components/LoginPage';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
-import fire from './config/fire';
+
+// Router
+import { BrowserRouter, Route, Link, Router, Redirect } from 'react-router-dom';
+
+//import Components and Pages
+import LoginPage from './components/LoginPage'
 import Home from './components/Home'
+//หน้าแอปส่วนหลักในการทำการ Route และrender หน้า
 
-class App extends Component{
+import fire from './config/fire'
 
-  constructor(props){
+
+
+class App extends Component {
+
+  constructor(props) {
     super(props)
-      this.state={
-        user: {}
-      }
+    this.state = {
+      user: {}
     }
+  }
 
-  componentDidMount(){
+  componentDidMount() {
     this.authListener()
   }
 
 
   authListener() {
-    fire.auth().onAuthStateChanged((user)=>{
-      if(user){
-        this.setState({user})
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user })
       }
-      else{
-        this.setState({user:null})
+      else {
+        this.setState({ user: null })
       }
     })
   }
 
 
-  render(){
-    if(this.state.user == null)
-    {
-    return(
-      <div>
-        <LoginPage />
+  render() {
+    if (this.state.user == null) {
+      return (
+        <div>
+          <LoginPage />
         </div>
 
-    );
+      );
     }
-    return(
+    return (
       <div>
-        <Home />
+        <div>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/orders" component={LoginPage} />
+          <Route path="/forminput" component={LoginPage} />
+          <Route path="/pricing" component={LoginPage} />
+        </div>
       </div>
     )
   }
 }
 export default App
+
 
 
 

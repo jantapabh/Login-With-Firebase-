@@ -1,16 +1,16 @@
 import React from 'react'
-import Topbar from './Topbar';
 
 
-const Home = props => {
+
+const Order = props => {
 
     return (
         <div>
-            <Topbar />
+            <Order />
             <div>
             </div>
         </div>
     )
 }
 
-export default Home;
+export default Order;
